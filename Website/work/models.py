@@ -27,9 +27,8 @@ class freelancer(models.Model):
     address = models.CharField(max_length=200)
     payment = models.IntegerField(default=0)
 
-class request(models.Model):
-    client = models.ForeignKey(client, on_delete=models.CASCADE)
-    emp_assigned = models.ForeignKey(employee, on_delete=models.CASCADE)
+class clean_request(models.Model):
+    emp_assigned = models.ForeignKey(employee, on_delete=models.SET_NULL, null=True)
     receive_date = models.DateTimeField('receive date')
-    completion_date = models.DateTimeField('completion date')
-    notes = models.CharField(max_length=500, null=True)
+    completion_date = models.DateTimeField('completion date', null=True)
+    address = models.CharField(max_length=200)
