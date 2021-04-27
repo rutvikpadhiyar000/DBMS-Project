@@ -15,6 +15,9 @@ class employee(models.Model):
     emp_address = models.CharField(max_length=200)
     emp_salary = models.IntegerField(default=0)
 
+    def __str__(self):
+        return str(self.emp_ID) + " " + self.emp_name
+
 class freelancer(models.Model):
     ID = models.IntegerField(default=0, primary_key=True)
     name = models.CharField(max_length=100)
@@ -27,8 +30,18 @@ class freelancer(models.Model):
     address = models.CharField(max_length=200)
     payment = models.IntegerField(default=0)
 
+    def __str__(self):
+        return str(self.ID) + " " + self.name
+
 class clean_request(models.Model):
+    client = models.ForeignKey(client, on_delete=models.CASCADE, null=True)
     emp_assigned = models.ForeignKey(employee, on_delete=models.SET_NULL, null=True)
     receive_date = models.DateTimeField('receive date')
     completion_date = models.DateTimeField('completion date', null=True)
     address = models.CharField(max_length=200)
+
+    def __str__(self):
+        if self.completion_date != None:
+            return str(self.pk) + " " + "Done"
+        else:
+            return str(self.pk) + " " + "Pending"
