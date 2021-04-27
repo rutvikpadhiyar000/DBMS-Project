@@ -10,7 +10,7 @@ def home(request):
     return render(request, 'index.html', {'placed': placed})
 
 def create_order(address):
-    order = clean_request(receive_date=timezone.now(), address=address)
+    order = clean_request.objects.create(receive_date=timezone.now(), address=address)
     global placed
     placed = True
     return redirect('home')
