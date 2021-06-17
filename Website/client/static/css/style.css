@@ -1,0 +1,7 @@
+.center-div {
+    margin: auto;
+    display: table-row;
+}
+.center-div .margin-top-1 {
+    margin-top: 1em;
+}

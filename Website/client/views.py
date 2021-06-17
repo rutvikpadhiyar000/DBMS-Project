@@ -19,8 +19,8 @@ def create_order(client):
 def place_request(request):
     global placed
     placed = False
-    address = request.GET["address"]
-    contact = request.GET["contact"]
-    name = request.GET["name"]
+    address = request.POST["address"]
+    contact = request.POST["contact"]
+    name = request.POST["name"]
     cli = client.objects.create(client_address=address, client_name=name, client_contact=contact)
     return create_order(cli)
